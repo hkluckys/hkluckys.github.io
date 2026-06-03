@@ -338,9 +338,12 @@ a { text-decoration: none; color: inherit; }
 }
 .members-group-img {
   width: 100%; height: 100%;
-  object-fit: cover; object-position: center 20%;
+  object-fit: cover; object-position: center 15%;
   filter: grayscale(85%) contrast(1.1) brightness(1.05);
   transition: filter 0.3s;
+}
+@media (min-width: 768px) {
+  .members-group-img { object-position: center 35%; }
 }
 .members-interactive:hover .members-group-img {
   filter: grayscale(60%) contrast(1.1) brightness(1.08);
@@ -574,7 +577,7 @@ a { text-decoration: none; color: inherit; }
     <div class="m-spot" style="top:36%;left:46%"  data-name="SCINGO / シンゴ"     data-role="コーラス &amp; リード"                  data-desc="見た目に似合わずセクシーボイス。たまにリードで会場を沸かせる。"></div>
     <div class="m-spot" style="top:42%;left:62%"  data-name="Ken / ケン"          data-role="コーラス &amp; リーダー"                data-desc="1992年結成の立役者。目立たないが一番大事な人。"></div>
     <div class="m-spot" style="top:30%;left:78%"  data-name="takebonne / タケボン" data-role="ベース"                              data-desc="KENのお世話役。マイクで殴られても笑顔の低音番長。"></div>
-    <div class="m-spot" style="top:88%;left:44%"  data-name="ZAMZAM / ザンザン"   data-role="パワーボーカル &amp; トップコーラス"    data-desc="魂の叫び担当。ステージに立つと空気が変わる。北海道出身。"></div>
+    <div class="m-spot" style="top:88%;left:44%" data-top-pc="72" data-left-pc="44" data-name="ZAMZAM / ザンザン"   data-role="パワーボーカル &amp; トップコーラス"    data-desc="魂の叫び担当。ステージに立つと空気が変わる。北海道出身。"></div>
     <!-- 吹き出し -->
     <div class="m-bubble" id="mBubble">
       <div class="m-bubble-name" id="bName"></div>
@@ -669,6 +672,19 @@ a { text-decoration: none; color: inherit; }
   var bDesc = document.getElementById('bDesc');
   var wrap  = document.querySelector('.members-interactive');
   var active = null;
+
+  // PC時はdata-top-pcがあればその値を使う
+  function adjustSpots() {
+    var isPC = window.innerWidth >= 768;
+    spots.forEach(function(s) {
+      if (s.dataset.topPc) {
+        s.style.top  = (isPC ? s.dataset.topPc  : '88') + '%';
+        s.style.left = (isPC ? s.dataset.leftPc : '44') + '%';
+      }
+    });
+  }
+  adjustSpots();
+  window.addEventListener('resize', adjustSpots);
 
   spots.forEach(function(spot) {
     spot.addEventListener('click', function(e) {
