@@ -275,8 +275,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
     <div class="band-label">NEW</div>
     <div class="band-marquee-wrap">
       <div class="band-marquee-track">
-        <span class="band-marquee-item">Lucky FM 87.3 Night Harmony — 開局しました。いつでも、どこでも、香港好運の声をお届け中。あの曲が聴きたい…そんなリクエストもお待ちしております。</span>
-        <span class="band-marquee-item">Lucky FM 87.3 Night Harmony — 開局しました。いつでも、どこでも、香港好運の声をお届け中。あの曲が聴きたい…そんなリクエストもお待ちしております。</span>
+        <span class="band-marquee-item">On Air & Online — Lucky FM開局とともに、サイトも新しくなりました。まだいます。しぶとく、逞しく、33年。中年、デジタルに挑む。あの曲が聴きたい…そんなリクエストもお待ちしております。</span>
+        <span class="band-marquee-item">On Air & Online — Lucky FM開局とともに、サイトも新しくなりました。まだいます。しぶとく、逞しく、33年。中年、デジタルに挑む。あの曲が聴きたい…そんなリクエストもお待ちしております。</span>
       </div>
     </div>
     <a href="#video" class="band-btn">視聴する</a>
@@ -289,6 +289,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
     <h2 class="sec-title"><span>Latest</span> News</h2>
   </div>
   <div class="news-list">
+    <div onclick="openNewsModal('n_renewal')" class="news-item">
+      <span class="news-tag">New</span>
+      <div class="news-item-right"><div class="news-item-date">2026 / 06 / 14</div><div class="news-item-title">On Air & Online — Lucky FM開局とともに、公式サイトも新しくなりました。</div></div>
+    </div>
     <div onclick="openNewsModal('n0')" class="news-item">
       <span class="news-tag">New</span>
       <div class="news-item-right"><div class="news-item-date">2026 / 06 / 14</div><div class="news-item-title">Lucky FM 87.3 Night Harmony 開局</div></div>
@@ -427,7 +431,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 <script>
 // NEWS MODAL
 var NM={
-  n0:{tag:'New',date:'2026 / 06 / 14',title:'Lucky FM 87.3 Night Harmony 開局',url:'#video'},
+  n_renewal:{tag:'New',date:'2026 / 06 / 14',title:'On Air & Online — Lucky FM開局とともに、公式サイトも新しくなりました。',btnLabel:'サイトを見る',url:'#news',body:'しぶとく、逞しく33年。中年、デジタルに挑む。Lucky FM開局を機に公式サイトをリニューアルしました。'},
+  n0:{tag:'New',date:'2026 / 06 / 14',title:'Lucky FM 87.3 Night Harmony 開局',url:'#video',btnLabel:'動画を見る',body:'香港好運の音楽をラジオ形式でお届けします。下記より動画をご覧ください。'},
   n1:{tag:'Live',date:'2025 / 05 / 05',title:'アルケミスト × 香港好運「Voice of H…」6月15日開催決定',url:'https://hkluckys.exblog.jp/30663192/'},
   n2:{tag:'Live',date:'2024 / 12 / 27',title:'香港好運 年末ワンマンライブ 2024（12月31日）開催のご案内',url:'https://hkluckys.exblog.jp/30563241/'},
   n3:{tag:'Live',date:'2024 / 05 / 05',title:'日比谷公園小音楽堂アカペラコンサート（5月6日）出演',url:'https://hkluckys.exblog.jp/30183395/'},
@@ -437,12 +442,16 @@ var NM={
 };
 function openNewsModal(id){
   var d=NM[id];if(!d)return;
-  var tc=d.tag==='Live'?'news-tag':'news-tag log';
+  var tc=d.tag==='New'?'news-tag':'news-tag log';
+  var bodyText=d.body?d.body:'詳細は旧公式サイト（エキサイトブログ）をご覧ください。';
+  var btnText=d.btnLabel?d.btnLabel:'旧サイトで詳細を見る';
+  var target=d.url.startsWith('#')?'_self':'_blank';
   document.getElementById('nmContent').innerHTML=
     '<div style="margin-bottom:1rem;"><span class="'+tc+'">'+d.tag+'</span></div>'+
     '<div style="font-size:0.7rem;color:var(--gray);margin-bottom:0.5rem;">'+d.date+'</div>'+
     '<div style="font-size:1.05rem;color:var(--white);line-height:1.6;margin-bottom:1.5rem;">'+d.title+'</div>'+
-    '<div style="font-size:0.8rem;color:rgba(255,255,255,0.4);line-height:1.7;margin-bottom:1.5rem;">詳細は旧公式サイト（エキサイトブログ）をご覧ください。</div>'+
+    '<div style="font-size:0.8rem;color:rgba(255,255,255,0.4);line-height:1.7;margin-bottom:1.5rem;">'+bodyText+'</div>'+
+    '<a href="'+d.url+'" target="'+target+'" class="disc-btn-p">'+btnText+'</a>';
     '<a href="'+d.url+'" target="_blank" class="disc-btn-p">旧サイトで詳細を見る</a>';
   document.getElementById('nmOv').classList.add('open');
   document.body.style.overflow='hidden';
