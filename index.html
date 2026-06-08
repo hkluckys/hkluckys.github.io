@@ -18,6 +18,7 @@
   --gray2: #444;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
+html,body{overflow-x:hidden;}
 body{background:var(--black);color:var(--white);font-family:'Noto Sans JP',sans-serif;font-weight:300;}
 
 /* NAV */
@@ -26,6 +27,19 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .nav-links{display:flex;gap:2rem;}
 .nav-links a{font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s;}
 .nav-links a:hover{color:var(--white);}
+
+/* HAMBURGER */
+.nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;cursor:pointer;background:none;border:none;padding:4px;z-index:110;}
+.nav-hamburger span{display:block;width:22px;height:1.5px;background:var(--gold);transition:all 0.3s;}
+.nav-hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.nav-hamburger.open span:nth-child(2){opacity:0;}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+
+/* MOBILE MENU OVERLAY */
+.nav-mobile{display:none;position:fixed;inset:0;z-index:105;background:rgba(10,10,10,0.97);flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;}
+.nav-mobile.open{display:flex;}
+.nav-mobile a{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:0.15em;color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.2s;}
+.nav-mobile a:hover{color:var(--gold);}
 
 /* HERO */
 .hero{height:100vh;position:relative;display:flex;align-items:flex-end;padding:4rem 3rem;background:#000;}
@@ -133,7 +147,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 
 @media(max-width:768px){
   .nav-links{display:none;}
-  .hero{padding:2rem 1.5rem;}
+  .nav-hamburger{display:flex;}
+  .hero{padding:5rem 1.5rem 2rem;}
   .members-interactive{grid-template-columns:1fr;}
   .disc-grid-top,.disc-feat-grid{grid-template-columns:1fr;}
   .disc-modal-in{flex-direction:column;}
@@ -216,14 +231,25 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 <body>
 
 <nav>
-  <div class="nav-logo">HK Luckys</div>
+  <div class="nav-logo">Hong Kong Luckys</div>
   <div class="nav-links">
     <a href="#news">News</a>
     <a href="#members">Members</a>
     <a href="#video">Video</a>
     <a href="#discography">Discography</a>
   </div>
+  <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="メニュー">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="nav-mobile" id="navMobile">
+  <a href="#news"        onclick="closeMenu()">News</a>
+  <a href="#members"     onclick="closeMenu()">Members</a>
+  <a href="#video"       onclick="closeMenu()">Video</a>
+  <a href="#discography" onclick="closeMenu()">Discography</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -442,7 +468,20 @@ function openModal(id){
 function closeM(){document.getElementById('modalOv').classList.remove('open');document.body.style.overflow='';}
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeM();closeNM();}});
 
-// MEMBER SPOTS
+// HAMBURGER MENU
+function toggleMenu(){
+  var hb = document.getElementById('hamburger');
+  var mn = document.getElementById('navMobile');
+  hb.classList.toggle('open');
+  mn.classList.toggle('open');
+  document.body.style.overflow = mn.classList.contains('open') ? 'hidden' : '';
+}
+function closeMenu(){
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('navMobile').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
 (function() {
   var spots = document.querySelectorAll('.m-spot');
   var bubble = document.getElementById('mBubble');
