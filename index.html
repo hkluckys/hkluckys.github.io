@@ -103,6 +103,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 
 /* VIDEO */
 .video-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1px;background:#1a1a1a;}
+.video-item{background:var(--black2);display:flex;flex-direction:column;}
+.video-embed{aspect-ratio:16/9;width:100%;}
+.video-embed iframe{width:100%;height:100%;display:block;}
+.video-caption{font-size:0.72rem;color:rgba(255,255,255,0.45);padding:0.6rem 0.75rem;letter-spacing:0.05em;}
 .video-placeholder{background:var(--black2);aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.5rem;color:var(--gray);}
 .video-placeholder-icon{font-size:2rem;color:rgba(212,168,67,0.2);}
 .video-placeholder-text{font-size:0.65rem;letter-spacing:0.1em;}
@@ -352,7 +356,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
     <h2 class="sec-title"><span>Lucky</span> FM 87.3</h2>
   </div>
   <div class="video-grid">
-    <div class="video-placeholder"><div class="video-placeholder-icon">▶</div><div class="video-placeholder-text">動画準備中</div></div>
+    <div class="video-item">
+      <div class="video-embed">
+        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/WSeVNkIWvOk" title="MELODY / メロディー（玉置浩二 cover）— Hong Kong Luckys" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+      <div class="video-caption">MELODY / メロディー — 玉置浩二 cover</div>
+    </div>
     <div class="video-placeholder"><div class="video-placeholder-icon">▶</div><div class="video-placeholder-text">動画準備中</div></div>
     <div class="video-placeholder"><div class="video-placeholder-icon">▶</div><div class="video-placeholder-text">動画準備中</div></div>
   </div>
