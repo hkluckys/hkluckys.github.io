@@ -251,7 +251,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 </nav>
 
 <!-- MOBILE MENU -->
-<div class="nav-mobile" id="navMobile">
+<div class="nav-mobile" id="navMobile" onclick="if(event.target===this)closeMenu()">
   <a href="#news"        onclick="closeMenu()">News</a>
   <a href="#members"     onclick="closeMenu()">Members</a>
   <a href="#video"       onclick="closeMenu()">Video</a>
@@ -512,6 +512,7 @@ function closeMenu(){
   document.getElementById('navMobile').classList.remove('open');
   document.body.style.overflow = '';
 }
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu();});
 
 (function() {
   var spots = document.querySelectorAll('.m-spot');
