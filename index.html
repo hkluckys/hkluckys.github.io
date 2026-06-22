@@ -218,7 +218,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
   padding: 0.75rem 1rem;
   min-width: 180px; max-width: 240px;
   z-index: 10;
-  pointer-events: none;
+  pointer-events: auto;
   opacity: 0;
   line-height: 1.4;
   transform: translateY(6px);
@@ -303,6 +303,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
     <h2 class="sec-title"><span>Latest</span> News</h2>
   </div>
   <div class="news-list">
+    <div onclick="openNewsModal('n_luckytv')" class="news-item">
+      <span class="news-tag">New</span>
+      <div class="news-item-right"><div class="news-item-date">2026 / 06 / 22</div><div class="news-item-title">Lucky TV 開局</div></div>
+    </div>
+    <div onclick="openNewsModal('n_luckyfm_move')" class="news-item">
+      <span class="news-tag">New</span>
+      <div class="news-item-right"><div class="news-item-date">2026 / 06 / 22</div><div class="news-item-title">Lucky FM 87.3 は DJ の都合により Coyan のネタ部屋へ引っ越しました。</div></div>
+    </div>
     <div onclick="openNewsModal('n_renewal')" class="news-item">
       <span class="news-tag">New</span>
       <div class="news-item-right"><div class="news-item-date">2026 / 06 / 14</div><div class="news-item-title">On Air & Online — Lucky FM開局とともに、公式サイトも新しくなりました。</div></div>
@@ -347,7 +355,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
   <div class="members-interactive" style="max-width:1200px;margin:0 auto;">
     <img class="members-group-img" src="https://hkluckys.github.io/images/members.jpg" alt="Members">
     <div class="m-spot" style="top:72%;left:14%"  data-name="Yu / ユウ"           data-role="ボイスパーカッション &amp; ベースコーラス" data-desc="身体がドラムに進化した男。低音の要。"></div>
-    <div class="m-spot" style="top:48%;left:26%"  data-name="Coyan / コヤン"      data-role="コーラス &amp; ダンス指導"              data-desc="へっぽこダンスの師匠。グループのノリを作る存在。"></div>
+    <div class="m-spot" style="top:48%;left:26%"  data-name="Coyan / コヤン"      data-role="コーラス &amp; ダンス指導"              data-desc="へっぽこダンスの師匠。グループのノリを作る存在。" data-link="coyan.html" data-link-label="Coyan's Back Room →"></div>
     <div class="m-spot" style="top:36%;left:46%"  data-name="SCINGO / シンゴ"     data-role="コーラス &amp; リード"                  data-desc="見た目に似合わずセクシーボイス。たまにリードで会場を沸かせる。"></div>
     <div class="m-spot" style="top:42%;left:62%"  data-name="Ken / ケン"          data-role="コーラス &amp; リーダー"                data-desc="1992年結成の立役者。目立たないが一番大事な人。"></div>
     <div class="m-spot" style="top:30%;left:78%"  data-name="takebonne / タケボン" data-role="ベース"                              data-desc="KENのお世話役。マイクで殴られても笑顔の低音番長。"></div>
@@ -356,6 +364,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
       <div class="m-bubble-name" id="bName"></div>
       <div class="m-bubble-role" id="bRole"></div>
       <div class="m-bubble-desc" id="bDesc"></div>
+      <a class="m-bubble-link" id="bLink" href="#" target="_blank" style="display:none;font-size:0.6rem;letter-spacing:0.1em;color:var(--gold);text-decoration:none;margin-top:0.5rem;display:none;"></a>
     </div>
   </div>
 </div>
@@ -363,32 +372,26 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 <!-- VIDEO -->
 <div class="section" id="video">
   <div class="sec-head">
-    <h2 class="sec-title"><span>Lucky</span> FM 87.3</h2>
+    <h2 class="sec-title"><span>Lucky</span> TV</h2>
   </div>
   <div class="video-grid">
     <div class="video-item">
       <div class="video-embed">
-        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/WSeVNkIWvOk" title="MELODY / メロディー（玉置浩二 cover）— Hong Kong Luckys" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/PahuQvQcQv0" title="また明日 — Hong Kong Luckys Live" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
       </div>
-      <div class="video-caption">MELODY / メロディー — 玉置浩二 cover</div>
+      <div class="video-caption">また明日 — オリジナル曲</div>
     </div>
     <div class="video-item">
       <div class="video-embed">
-        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Utq5dmGp1q4" title="逢いたくて逢いたくて（園まり cover）— Hong Kong Luckys" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/2JbYcDoQU6Y" title="中年不思議国 — Hong Kong Luckys Live" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
       </div>
-      <div class="video-caption">逢いたくて逢いたくて — 園まり cover</div>
+      <div class="video-caption">中年不思議国 — オリジナル曲</div>
     </div>
     <div class="video-item">
       <div class="video-embed">
-        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/IXKhpAPIwV0" title="瞳はダイアモンド（松田聖子 cover）— Hong Kong Luckys" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/tLh6BbZFXN8" title="香港好運ヒストリー — Hong Kong Luckys" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
       </div>
-      <div class="video-caption">瞳はダイアモンド — 松田聖子 cover</div>
-    </div>
-    <div class="video-item">
-      <div class="video-embed">
-        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/5jFodBoq7Hg" title="日常（Official髭男dism cover）— Hong Kong Luckys" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
-      </div>
-      <div class="video-caption">日常 — Official髭男dism cover</div>
+      <div class="video-caption">香港好運ヒストリー</div>
     </div>
   </div>
 </div>
@@ -503,6 +506,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 <script>
 // NEWS MODAL
 var NM={
+  n_luckytv:{tag:'New',date:'2026 / 06 / 22',title:'Lucky TV 開局',url:'#video',btnLabel:'動画を見る',body:'香港好運の映像コンテンツをお届けするLucky TVを開局しました。ライブ映像やヒストリー動画など、香港好運の「見る」楽しみをお届けします。'},
+  n_luckyfm_move:{tag:'New',date:'2026 / 06 / 22',title:'Lucky FM 87.3 は DJ の都合により Coyan のネタ部屋へ引っ越しました。',url:'#video',btnLabel:'動画を見る',body:'Lucky FM 87.3 Night Harmonyはコヤンのネタ部屋として引き続き活動予定です。今後ともよろしくお願いします。'},
   n_renewal:{tag:'New',date:'2026 / 06 / 14',title:'On Air & Online — Lucky FM開局とともに、公式サイトも新しくなりました。',btnLabel:'サイトを見る',url:'#news',body:'しぶとく、逞しく33年。中年、デジタルに挑む。Lucky FM開局を機に公式サイトをリニューアルしました。'},
   n0:{tag:'New',date:'2026 / 06 / 14',title:'Lucky FM 87.3 Night Harmony 開局',url:'#video',btnLabel:'動画を見る',body:'香港好運の音楽をラジオ形式でお届けします。下記より動画をご覧ください。'},
   n1:{tag:'Live',date:'2025 / 05 / 05',title:'アルケミスト × 香港好運「Voice of H…」6月15日開催決定',url:'https://hkluckys.exblog.jp/30663192/'},
@@ -605,6 +610,15 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu();
       bName.textContent = spot.dataset.name;
       bRole.innerHTML   = spot.dataset.role;
       bDesc.textContent = spot.dataset.desc;
+
+      var bLink = document.getElementById('bLink');
+      if (spot.dataset.link) {
+        bLink.href = spot.dataset.link;
+        bLink.textContent = spot.dataset.linkLabel || spot.dataset.link;
+        bLink.style.display = 'block';
+      } else {
+        bLink.style.display = 'none';
+      }
 
       // Position bubble relative to the wrap container
       var wRect   = wrap.getBoundingClientRect();
