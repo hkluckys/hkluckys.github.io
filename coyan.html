@@ -147,11 +147,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
         </div>
       </div>
       <div class="song-links">
-        <a href="https://open.spotify.com/track/0UqpUEw2MRvHEmgnKL5rhK" target="_blank" class="song-link spotify">🎵 原曲を Spotify で</a>
+        <a href="https://open.spotify.com/track/1ZzDH3mNNNfO6ZftRZKsHc" target="_blank" class="song-link spotify">🎵 原曲を Spotify で</a>
         <button class="arrange-note-btn" onclick="toggleNote(this)">📝 アレンジノート</button>
       </div>
       <div class="arrange-note-body">
-        Coyanにとって松田聖子は永遠のアイドル。いつかはアカペラアレンジしたいとずっと思っていました。ただヒット曲が多すぎて選曲に長年苦労していたところ、ふとイントロと間奏のパターンでしっくりくるアイデアが浮かんだのがこの曲でした。ユーミンが「呉田軽穂」名義で提供した松田聖子シリーズの中でも特に人気の高い一曲です。
+        私にとって松田聖子は永遠のアイドル。いつかはアカペラアレンジしたいとずっと思っていました。ただヒット曲が多すぎて選曲に長年苦労していたところ、ふとイントロと間奏のパターンでしっくりくるアイデアが浮かんだのがこの曲でした。ユーミンが「呉田軽穂」名義で提供した曲の中でも、以前はセルフカバーしないと言われていたにもかかわらず、2003年のアルバム「Yuming Compositions: FACES」で異例のセルフカバーを果たした一曲でもあります。2024年6月2日、吉祥寺 Crescendoでのライブにて香港好運として初披露されました。
       </div>
     </div>
 
@@ -170,12 +170,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
         </div>
       </div>
       <div class="song-links">
-        <a href="https://open.spotify.com/track/323T2HbSmP5c3S8IdFSa6H" target="_blank" class="song-link spotify">🎵 原曲を Spotify で</a>
+        <a href="https://open.spotify.com/track/1Ek1BfbphUANhJYcqV3Oaf" target="_blank" class="song-link spotify">🎵 原曲を Spotify で</a>
         <button class="arrange-note-btn" onclick="toggleNote(this)">📝 アレンジノート</button>
       </div>
       <div class="arrange-note-body">
-        岩谷時子作詞・宮川泰作曲による1966年リリースの園まりの代表曲。もともとはザ・ピーナッツのために書かれた「手編みの靴下」（1962年）が原曲で、当時はヒットせず、作詞の岩谷時子が新しい歌詞をつけて園まりに託した一曲で、空前の大ヒットとなりました。香港好運メンバーのほとんどが「知らない」と首をかしげる中、Coyanにとっては幼い頃から母親がよく歌っていた聞き慣れた一曲です。<br><br>
-        このアレンジ、実は「原曲に別の詩をつけて生まれ変わった」という曲のストーリーと少し似ていて、Coyanはもともとジョージ・マイケルの「Kissing a Fool」をアカペラアレンジしている最中に、ふと「愛した人はあなただけ🎵」というフレーズが頭をよぎり、そのまま園まりの歌にしてしまったという経緯があります。こういうのがCoyanにはわりとよくある話です。
+        岩谷時子作詞・宮川泰作曲による1966年リリースの園まりの代表曲。もともとはザ・ピーナッツのために書かれた「手編みの靴下」（1962年）が原曲で、当時はヒットせず、作詞の岩谷時子が新しい歌詞をつけて園まりに託した一曲で、空前の大ヒットとなりました。香港好運メンバーのほとんどが「知らない」と首をかしげる中、私にとっては幼い頃から母親がよく歌っていた聞き慣れた一曲です。<br><br>
+        このアレンジ、実は「原曲に別の詩をつけて生まれ変わった」という曲のストーリーと少し似ていて、私はもともとジョージ・マイケルの「Kissing a Fool」をアカペラアレンジしている最中に、ふと「愛した人はあなただけ🎵」というフレーズが頭をよぎり、そのまま園まりの歌にしてしまったという経緯があります。こういうのが私にはわりとよくある話です。
       </div>
     </div>
 
@@ -378,7 +378,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 <div class="section" id="originals">
   <div class="sec-eyebrow">Section 02</div>
   <h2 class="sec-title"><span>オリジナル曲</span> デモ音源</h2>
-  <p class="sec-note">香港好運のオリジナル曲。こちらは歌詞付きでお届けします。</p>
+  <p class="sec-note">未発表のオリジナル曲もデモ準備中。</p>
   <div class="coming-soon">
     <div class="coming-soon-icon">🎵</div>
     <div class="coming-soon-text">準備中 — Coming Soon</div>
@@ -461,7 +461,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 
 <script>
 function toggleNote(btn) {
-  var body = btn.nextElementSibling;
+  var card = btn.closest('.song-card');
+  var body = card.querySelector('.arrange-note-body');
   body.classList.toggle('open');
   btn.textContent = body.classList.contains('open') ? '▲ アレンジノートを閉じる' : '📝 アレンジノート';
 }
