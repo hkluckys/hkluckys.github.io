@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coyan's Back Room — コヤンのネタ部屋</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #d4a843;
+  --gold2: #f0c866;
+  --gold-dim: rgba(212,168,67,0.15);
+  --black: #0a0a0a;
+  --black2: #111;
+  --black3: #1a1a1a;
+  --white: #f0ede8;
+  --gray: #888;
+  --gray2: #444;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{overflow-x:hidden;}
+body{background:var(--black);color:var(--white);font-family:'Noto Sans JP',sans-serif;font-weight:300;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;background:rgba(10,10,10,0.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(212,168,67,0.1);}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:0.2em;color:var(--gold);}
+.nav-logo span{color:rgba(255,255,255,0.35);font-size:0.7rem;letter-spacing:0.15em;margin-left:0.5rem;}
+.nav-back{font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.3);text-decoration:none;transition:color 0.2s;}
+.nav-back:hover{color:var(--gold);}
+
+/* HERO */
+.hero{padding:7rem 2rem 3rem;max-width:900px;margin:0 auto;}
+.hero-eyebrow{font-size:0.58rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem;opacity:0.7;}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,8vw,5rem);line-height:0.95;letter-spacing:0.04em;color:var(--white);margin-bottom:0.4rem;}
+.hero-sub{font-size:0.9rem;color:rgba(255,255,255,0.35);letter-spacing:0.15em;margin-bottom:1.5rem;}
+.hero-desc{font-size:0.8rem;color:rgba(255,255,255,0.4);line-height:1.9;max-width:520px;border-left:2px solid rgba(212,168,67,0.3);padding-left:1rem;}
+
+/* SECTION */
+.section{padding:3rem 2rem;max-width:900px;margin:0 auto;}
+.section-divider{height:1px;background:linear-gradient(to right,rgba(212,168,67,0.3),transparent);margin:0 2rem;}
+.sec-eyebrow{font-size:0.52rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);opacity:0.6;margin-bottom:0.5rem;}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:0.08em;color:var(--white);margin-bottom:0.35rem;}
+.sec-title span{color:var(--gold);}
+.sec-note{font-size:0.72rem;color:var(--gray);margin-bottom:2rem;line-height:1.6;}
+
+/* SONG CARDS */
+.song-list{display:flex;flex-direction:column;gap:1px;background:rgba(212,168,67,0.06);}
+.song-card{background:var(--black2);padding:1.25rem 1.5rem;transition:background 0.15s;}
+.song-card:hover{background:var(--black3);}
+.song-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:0.75rem;}
+.song-card-info{}
+.song-title{font-size:0.95rem;color:var(--white);font-weight:400;margin-bottom:0.2rem;}
+.song-artist{font-size:0.65rem;color:var(--gold);letter-spacing:0.08em;margin-bottom:0.15rem;}
+.song-arr{font-size:0.6rem;color:var(--gray);letter-spacing:0.06em;}
+.song-badge{font-size:0.48rem;letter-spacing:0.15em;text-transform:uppercase;padding:2px 8px;flex-shrink:0;margin-top:3px;}
+.song-badge.demo{background:var(--gold);color:var(--black);}
+.song-badge.pending{background:var(--gray2);color:rgba(255,255,255,0.5);}
+.song-badge.botsuneta{background:transparent;border:1px solid var(--gray2);color:var(--gray);}
+
+/* VIDEO EMBED */
+.song-video{margin-bottom:0.75rem;}
+.song-video-inner{aspect-ratio:16/9;width:100%;max-width:480px;}
+.song-video-inner iframe{width:100%;height:100%;display:block;}
+
+/* LINKS */
+.song-links{display:flex;gap:0.6rem;flex-wrap:wrap;}
+.song-link{font-size:0.55rem;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;padding:4px 12px;transition:all 0.2s;border:1px solid;}
+.song-link.spotify{border-color:rgba(29,185,84,0.4);color:rgba(29,185,84,0.7);}
+.song-link.spotify:hover{border-color:#1DB954;color:#1DB954;}
+.song-link.youtube{border-color:rgba(255,0,0,0.3);color:rgba(255,80,80,0.7);}
+.song-link.youtube:hover{border-color:#ff4444;color:#ff4444;}
+
+/* ARRANGE NOTE */
+.arrange-note-btn{font-size:0.55rem;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;padding:4px 12px;border:1px solid rgba(212,168,67,0.3);color:rgba(212,168,67,0.6);cursor:pointer;background:none;transition:all 0.2s;}
+.arrange-note-btn:hover{border-color:var(--gold);color:var(--gold);}
+.arrange-note-body{display:none;margin-top:0.75rem;font-size:0.78rem;color:rgba(255,255,255,0.45);line-height:1.8;padding:0.75rem 1rem;border-left:2px solid rgba(212,168,67,0.2);background:rgba(212,168,67,0.03);}
+.arrange-note-body.open{display:block;}
+
+/* COMING SOON */
+.coming-soon{background:var(--black2);border:1px dashed rgba(212,168,67,0.15);padding:2.5rem;text-align:center;}
+.coming-soon-icon{font-size:1.5rem;margin-bottom:0.75rem;opacity:0.3;}
+.coming-soon-text{font-size:0.72rem;color:var(--gray);letter-spacing:0.1em;}
+
+/* FOOTER */
+.footer{border-top:1px solid rgba(255,255,255,0.05);padding:2rem;text-align:center;margin-top:4rem;}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:0.9rem;letter-spacing:0.2em;color:rgba(212,168,67,0.4);margin-bottom:0.4rem;}
+.footer-back{font-size:0.62rem;letter-spacing:0.15em;color:rgba(255,255,255,0.2);text-decoration:none;transition:color 0.2s;}
+.footer-back:hover{color:var(--gold);}
+
+@media(max-width:600px){
+  .song-card-top{flex-direction:column;}
+  .song-video-inner{max-width:100%;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Coyan's Back Room <span>コヤンのネタ部屋</span></div>
+  <a href="/" class="nav-back">← 香港好運 公式サイトへ</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Hong Kong Luckys — Spin-off</div>
+  <h1 class="hero-title">Coyan's<br>Back Room</h1>
+  <div class="hero-sub">コヤンのネタ部屋</div>
+  <p class="hero-desc">香港好運のアレンジ担当、Coyanの個人スペース。ボツになったネタ、メンバー向けのデモ音源、アレンジの裏話など、公式には載せられないものを気ままに置いておく場所です。迷い込んだ方はどうぞお楽しみください。</p>
+</div>
+
+<!-- SECTION 1: カバー曲デモ -->
+<div class="section-divider"></div>
+<div class="section" id="covers">
+  <div class="sec-eyebrow">Section 01</div>
+  <h2 class="sec-title"><span>カバー曲</span> デモ音源</h2>
+  <p class="sec-note">香港好運のレパートリーになったカバー曲たち。メンバーに新曲を覚えてもらうためにCoyanが一人で録音したデモ音源です。クオリティより愛嬌でお楽しみください。</p>
+
+  <div class="song-list">
+
+    <div class="song-card">
+      <div class="song-card-top">
+        <div class="song-card-info">
+          <div class="song-title">また逢う日まで</div>
+          <div class="song-artist">尾崎紀世彦</div>
+          <div class="song-arr">orig. 尾崎紀世彦 / arr. Coyan</div>
+        </div>
+        <span class="song-badge pending">音源 捜索中</span>
+      </div>
+      <div class="song-links">
+        <a href="https://open.spotify.com/track/323T2HbSmP5c3S8IdFSa6H" target="_blank" class="song-link spotify">🎵 原曲を Spotify で</a>
+      </div>
+    </div>
+
+    <div class="song-card">
+      <div class="song-card-top">
+        <div class="song-card-info">
+          <div class="song-title">瞳はダイアモンド</div>
+          <div class="song-artist">松田聖子</div>
+          <div class="song-arr">orig. 松田聖子 / arr. Coyan</div>
+        </div>
+        <span class="song-badge demo">Lucky FM</span>
+      </div>
+      <div class="song-video">
+        <div class="song-video-inner">
+          <iframe src="https://www.youtube.com/embed/IXKhpAPIwV0" title="瞳はダイアモンド Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+      </div>
+      <div class="song-links">
+        <a href="https://open.spotify.com/track/0UqpUEw2MRvHEmgnKL5rhK" target="_blank" class="song-link spotify">🎵 原曲を Spotify で</a>
+        <button class="arrange-note-btn" onclick="toggleNote(this)">📝 アレンジノート</button>
+      </div>
+      <div class="arrange-note-body">
+        Coyanにとって松田聖子は永遠のアイドル。いつかはアカペラアレンジしたいとずっと思っていました。ただヒット曲が多すぎて選曲に長年苦労していたところ、ふとイントロと間奏のパターンでしっくりくるアイデアが浮かんだのがこの曲でした。ユーミンが「呉田軽穂」名義で提供した松田聖子シリーズの中でも特に人気の高い一曲です。
+      </div>
+    </div>
+
+    <div class="song-card">
+      <div class="song-card-top">
+        <div class="song-card-info">
+          <div class="song-title">逢いたくて逢いたくて</div>
+          <div class="song-artist">園まり</div>
+          <div class="song-arr">orig. 園まり / arr. Coyan</div>
+        </div>
+        <span class="song-badge demo">Lucky FM</span>
+      </div>
+      <div class="song-video">
+        <div class="song-video-inner">
+          <iframe src="https://www.youtube.com/embed/Utq5dmGp1q4" title="逢いたくて逢いたくて Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+      </div>
+      <div class="song-links">
+        <a href="https://open.spotify.com/track/323T2HbSmP5c3S8IdFSa6H" target="_blank" class="song-link spotify">🎵 原曲を Spotify で</a>
+        <button class="arrange-note-btn" onclick="toggleNote(this)">📝 アレンジノート</button>
+      </div>
+      <div class="arrange-note-body">
+        岩谷時子作詞・宮川泰作曲による1966年リリースの園まりの代表曲。もともとはザ・ピーナッツのために書かれた「手編みの靴下」（1962年）が原曲で、当時はヒットせず、作詞の岩谷時子が新しい歌詞をつけて園まりに託した一曲で、空前の大ヒットとなりました。香港好運メンバーのほとんどが「知らない」と首をかしげる中、Coyanにとっては幼い頃から母親がよく歌っていた聞き慣れた一曲です。<br><br>
+        このアレンジ、実は「原曲に別の詩をつけて生まれ変わった」という曲のストーリーと少し似ていて、Coyanはもともとジョージ・マイケルの「Kissing a Fool」をアカペラアレンジしている最中に、ふと「愛した人はあなただけ🎵」というフレーズが頭をよぎり、そのまま園まりの歌にしてしまったという経緯があります。こういうのがCoyanにはわりとよくある話です。
+      </div>
+    </div>
+
+    <div class="song-card">
+      <div class="song-card-top">
+        <div class="song-card-info">
+          <div class="song-title">Freedom! '90</div>
+          <div class="song-artist">George Michael</div>
+          <div class="song-arr">orig. George Michael / arr. Coyan</div>
+        </div>
+        <span class="song-badge pending">音源 捜索中</span>
+      </div>
+      <div class="song-links">
+        <a href="https://open.spotify.com/track/3tyTt5pEWblt96j1HsXiV5" target="_blank" class="song-link spotify">🎵 原曲を Spotify で</a>
+      </div>
+    </div>
+
+    <div class="song-card">
+      <div class="song-card-top">
+        <div class="song-card-info">
+          <div class="song-title">End of the Road</div>
+          <div class="song-artist">Boyz II Men</div>
+          <div class="song-arr">orig. Boyz II Men / arr. Coyan</div>
+        </div>
+        <span class="song-badge pending">音源 捜索中</span>
+      </div>
+      <div class="song-links">
+        <a href="https://open.spotify.com/track/3l3xTXsUXeWlkPqzMs7mPD" target="_blank" class="song-link spotify">🎵 原曲を Spotify で</a>
+      </div>
+    </div>
+
+    <div class="song-card">
+      <div class="song-card-top">
+        <div class="song-card-info">
+          <div class="song-title">I Can't Go for That (No Can Do)</div>
+          <div class="song-artist">Hall & Oates</div>
+          <div class="song-arr">orig. Hall & Oates / arr. Coyan</div>
+        </div>
+        <span class="song-badge pending">音源 捜索中</span>
+      </div>
+      <div class="song-links">
+        <a href="https://open.spotify.com/track/41dDygR3r7e926oGUXfrLt" target="_blank" class="song-link spotify">🎵 原曲を Spotify で</a>
+      </div>
+    </div>
+
+    <div class="song-card">
+      <div class="song-card-top">
+        <div class="song-card-info">
+          <div class="song-title">You've Lost That Lovin' Feeling</div>
+          <div class="song-artist">The Righteous Brothers</div>
+          <div class="song-arr">orig. The Righteous Brothers / arr. Coyan</div>
+        </div>
+        <span class="song-badge pending">音源 捜索中</span>
+      </div>
+      <div class="song-links">
+        <a href="https://open.spotify.com/track/6AeyHqzNHJthYJbn0tvJ4b" target="_blank" class="song-link spotify">🎵 原曲を Spotify で</a>
+      </div>
+    </div>
+
+    <div class="song-card">
+      <div class="song-card-top">
+        <div class="song-card-info">
+          <div class="song-title">日常</div>
+          <div class="song-artist">Official髭男dism</div>
+          <div class="song-arr">orig. Official髭男dism / arr. Coyan</div>
+        </div>
+        <span class="song-badge demo">Lucky FM</span>
+      </div>
+      <div class="song-video">
+        <div class="song-video-inner">
+          <iframe src="https://www.youtube.com/embed/5jFodBoq7Hg" title="日常 Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+      </div>
+      <div class="song-links">
+        <a href="https://open.spotify.com/track/1jNVSP5r2X1iVDlJfXKarA" target="_blank" class="song-link spotify">🎵 原曲を Spotify で</a>
+        <button class="arrange-note-btn" onclick="toggleNote(this)">📝 アレンジノート</button>
+      </div>
+      <div class="arrange-note-body">
+        これまで日本語の曲は昭和歌謡の懐かしの名曲を持ち込むことが多かったが、思い切って髭ダンにチャレンジしてみた。おじさんの香港好運が髭ダン…という違和感もあるかもしれませんが、「日常」の「しんどいな」というフレーズはおじさんの日常でもあるので、歌うのもアリかと。近年のJ-POPはキーが高い傾向にありますが、この「日常」もなかなかのもの。そんなこんなで2025年12月31日、吉祥寺 Rock Joint GBでのライブにて香港好運として初披露されました。
+      </div>
+    </div>
+
+    <div class="song-card">
+      <div class="song-card-top">
+        <div class="song-card-info">
+          <div class="song-title">Saturday in the Park</div>
+          <div class="song-artist">Chicago</div>
+          <div class="song-arr">orig. Chicago / arr. Coyan</div>
+        </div>
+        <span class="song-badge pending">音源 捜索中</span>
+      </div>
+      <div class="song-links">
+        <a href="https://open.spotify.com/track/6suCI1pLqqvVVLLvLzjoKc" target="_blank" class="song-link spotify">🎵 原曲を Spotify で</a>
+      </div>
+    </div>
+
+    <div class="song-card">
+      <div class="song-card-top">
+        <div class="song-card-info">
+          <div class="song-title">If I Ain't Got You</div>
+          <div class="song-artist">Alicia Keys</div>
+          <div class="song-arr">orig. Alicia Keys / arr. Coyan</div>
+        </div>
+        <span class="song-badge pending">音源 捜索中</span>
+      </div>
+      <div class="song-links">
+        <a href="https://open.spotify.com/track/3XVBdLihbNbxUwZosxcGuJ" target="_blank" class="song-link spotify">🎵 原曲を Spotify で</a>
+      </div>
+    </div>
+
+    <div class="song-card">
+      <div class="song-card-top">
+        <div class="song-card-info">
+          <div class="song-title">ありがとうの歌</div>
+          <div class="song-artist">水前寺清子</div>
+          <div class="song-arr">orig. 水前寺清子 / arr. Coyan</div>
+        </div>
+        <span class="song-badge pending">音源 捜索中</span>
+      </div>
+      <div class="song-links">
+        <a href="https://open.spotify.com/intl-ja/track/6bY24sHvvuHJOsLVAs7RJj" target="_blank" class="song-link spotify">🎵 原曲を Spotify で</a>
+      </div>
+    </div>
+
+    <div class="song-card">
+      <div class="song-card-top">
+        <div class="song-card-info">
+          <div class="song-title">思い出のスター・ダスト</div>
+          <div class="song-artist">サザンオールスターズ</div>
+          <div class="song-arr">orig. サザンオールスターズ / arr. Coyan</div>
+        </div>
+        <span class="song-badge pending">音源 捜索中</span>
+      </div>
+      <div class="song-links">
+        <a href="https://open.spotify.com/intl-ja/track/2Vd695TfCbqHBXii2tW2uU" target="_blank" class="song-link spotify">🎵 原曲を Spotify で</a>
+      </div>
+    </div>
+
+    <div class="song-card">
+      <div class="song-card-top">
+        <div class="song-card-info">
+          <div class="song-title">Happy</div>
+          <div class="song-artist">Pharrell Williams</div>
+          <div class="song-arr">orig. Pharrell Williams / arr. Coyan</div>
+        </div>
+        <span class="song-badge pending">音源 捜索中</span>
+      </div>
+      <div class="song-links">
+        <a href="https://open.spotify.com/track/60nZcImufyMA1MKQY3dcCH" target="_blank" class="song-link spotify">🎵 原曲を Spotify で</a>
+      </div>
+    </div>
+
+    <div class="song-card">
+      <div class="song-card-top">
+        <div class="song-card-info">
+          <div class="song-title">I Want It That Way</div>
+          <div class="song-artist">Backstreet Boys</div>
+          <div class="song-arr">orig. Backstreet Boys / arr. Coyan</div>
+        </div>
+        <span class="song-badge pending">音源 捜索中</span>
+      </div>
+      <div class="song-links">
+        <a href="https://open.spotify.com/track/47BBI51FKFwOMlIiX6m8ya" target="_blank" class="song-link spotify">🎵 原曲を Spotify で</a>
+      </div>
+    </div>
+
+    <div class="song-card">
+      <div class="song-card-top">
+        <div class="song-card-info">
+          <div class="song-title">Shape of My Heart</div>
+          <div class="song-artist">Backstreet Boys</div>
+          <div class="song-arr">orig. Backstreet Boys / arr. Coyan</div>
+        </div>
+        <span class="song-badge pending">音源 捜索中</span>
+      </div>
+      <div class="song-links">
+        <a href="https://open.spotify.com/track/6H4BZmEpDu899IrLJ5WMgb" target="_blank" class="song-link spotify">🎵 原曲を Spotify で</a>
+      </div>
+    </div>
+
+    <div class="song-card">
+      <div class="song-card-top">
+        <div class="song-card-info">
+          <div class="song-title">Perfect</div>
+          <div class="song-artist">Ed Sheeran</div>
+          <div class="song-arr">orig. Ed Sheeran / arr. Coyan</div>
+        </div>
+        <span class="song-badge pending">音源 捜索中</span>
+      </div>
+      <div class="song-links">
+        <a href="https://open.spotify.com/track/0tgVpDi06FyKpA1z0VMD4v" target="_blank" class="song-link spotify">🎵 原曲を Spotify で</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SECTION 2: オリジナル曲デモ -->
+<div class="section-divider"></div>
+<div class="section" id="originals">
+  <div class="sec-eyebrow">Section 02</div>
+  <h2 class="sec-title"><span>オリジナル曲</span> デモ音源</h2>
+  <p class="sec-note">香港好運のオリジナル曲。こちらは歌詞付きでお届けします。</p>
+  <div class="coming-soon">
+    <div class="coming-soon-icon">🎵</div>
+    <div class="coming-soon-text">準備中 — Coming Soon</div>
+  </div>
+</div>
+
+<!-- SECTION 3: 没ネタ供養 -->
+<div class="section-divider"></div>
+<div class="section" id="botsuneta">
+  <div class="sec-eyebrow">Section 03</div>
+  <h2 class="sec-title"><span>没ネタ</span> 供養</h2>
+  <p class="sec-note">様々な理由でボツになったアレンジたち。成仏してください。</p>
+
+  <div class="song-list">
+
+    <div class="song-card">
+      <div class="song-card-top">
+        <div class="song-card-info">
+          <div class="song-title">小麦色のマーメイド</div>
+          <div class="song-artist">松田聖子</div>
+          <div class="song-arr">orig. 松田聖子 / arr. Coyan</div>
+        </div>
+        <span class="song-badge botsuneta">音源 掘り起こし中</span>
+      </div>
+      <div class="song-links">
+        <a href="https://open.spotify.com/track/0UqpUEw2MRvHEmgnKL5rhK" target="_blank" class="song-link spotify">🎵 原曲を Spotify で</a>
+      </div>
+    </div>
+
+    <div class="song-card">
+      <div class="song-card-top">
+        <div class="song-card-info">
+          <div class="song-title">Time After Time</div>
+          <div class="song-artist">Cyndi Lauper</div>
+          <div class="song-arr">orig. Cyndi Lauper / arr. Coyan</div>
+        </div>
+        <span class="song-badge botsuneta">音源 掘り起こし中</span>
+      </div>
+      <div class="song-links">
+        <a href="https://open.spotify.com/track/7o9uu2GDtVDr9nsR7ZRN73" target="_blank" class="song-link spotify">🎵 原曲を Spotify で</a>
+      </div>
+    </div>
+
+    <div class="song-card">
+      <div class="song-card-top">
+        <div class="song-card-info">
+          <div class="song-title">Africa</div>
+          <div class="song-artist">TOTO</div>
+          <div class="song-arr">orig. TOTO / arr. Coyan</div>
+        </div>
+        <span class="song-badge botsuneta">音源 掘り起こし中</span>
+      </div>
+      <div class="song-links">
+        <a href="https://open.spotify.com/track/6QZo2TgclkUMwJgggi8QSQ" target="_blank" class="song-link spotify">🎵 原曲を Spotify で</a>
+      </div>
+    </div>
+
+    <div class="song-card">
+      <div class="song-card-top">
+        <div class="song-card-info">
+          <div class="song-title">Viva la Vida</div>
+          <div class="song-artist">Coldplay</div>
+          <div class="song-arr">orig. Coldplay</div>
+        </div>
+        <span class="song-badge botsuneta">音源 掘り起こし中</span>
+      </div>
+      <div class="song-links">
+        <a href="https://open.spotify.com/track/1mea3bSkSGXuIRvnydlB5b" target="_blank" class="song-link spotify">🎵 原曲を Spotify で</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo">Coyan's Back Room</div>
+  <a href="/" class="footer-back">← 香港好運 公式サイトへ戻る</a>
+</footer>
+
+<script>
+function toggleNote(btn) {
+  var body = btn.nextElementSibling;
+  body.classList.toggle('open');
+  btn.textContent = body.classList.contains('open') ? '▲ アレンジノートを閉じる' : '📝 アレンジノート';
+}
+</script>
+</body>
+</html>
