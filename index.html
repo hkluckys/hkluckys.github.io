@@ -289,8 +289,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
     <div class="band-label">NEW</div>
     <div class="band-marquee-wrap">
       <div class="band-marquee-track">
-        <span class="band-marquee-item">Hong Kong Luckys — Official Site リニューアル。Lucky FM開局とともに、サイトも新しくなりました。しぶとく、逞しく、33年。声だけで紡ぎ出すハーモニーを、これからもお届けします。</span>
-        <span class="band-marquee-item">Hong Kong Luckys — Official Site リニューアル。Lucky FM開局とともに、サイトも新しくなりました。しぶとく、逞しく、33年。声だけで紡ぎ出すハーモニーを、これからもお届けします。</span>
+        <span class="band-marquee-item">香港好運×アルケミスト Sign of Luck〜好運の前兆〜 2026.10.24（土）Tokyo Guesthouse Oji Music Lounge — チケット申込受付中！ https://www.littlelift.jp/20261024SOL</span>
+        <span class="band-marquee-item">香港好運×アルケミスト Sign of Luck〜好運の前兆〜 2026.10.24（土）Tokyo Guesthouse Oji Music Lounge — チケット申込受付中！ https://www.littlelift.jp/20261024SOL</span>
       </div>
     </div>
     <a href="#video" class="band-btn">視聴する</a>
@@ -303,6 +303,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
     <h2 class="sec-title"><span>Latest</span> News</h2>
   </div>
   <div class="news-list">
+    <div onclick="openNewsModal('n_signof luck')" class="news-item">
+      <span class="news-tag">New</span>
+      <div class="news-item-right"><div class="news-item-date">2026 / 09 / 16</div><div class="news-item-title">香港好運×アルケミスト Sign of Luck〜好運の前兆〜 2026.10.24</div></div>
+    </div>
     <div onclick="openNewsModal('n_luckytv')" class="news-item">
       <span class="news-tag">New</span>
       <div class="news-item-right"><div class="news-item-date">2026 / 06 / 22</div><div class="news-item-title">Lucky TV 開局</div></div>
@@ -506,6 +510,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 <script>
 // NEWS MODAL
 var NM={
+  'n_signof luck':{tag:'New',date:'2026 / 09 / 16',title:'香港好運×アルケミスト Sign of Luck〜好運の前兆〜',url:'https://www.littlelift.jp/20261024SOL',btnLabel:'チケット申込',body:'2026年10月24日（土）\nOPEN 12:00 / START 12:45\nTokyo Guesthouse Oji Music Lounge\nJR京浜東北線「王子駅」徒歩3分\n出演：アルケミスト / 香港好運\n\n＜会場観覧＞ 4,000円（+2オーダー代 1,000円）\n自由席・整理番号順入場\n9/27までのお申し込みは抽選、それ以降は先着順\nアーカイブ視聴付き\n\n＜配信視聴＞ 3,000円\nアーカイブ2週間視聴可能\n\n【申込】9/16 20:00〜'},
   n_luckytv:{tag:'New',date:'2026 / 06 / 22',title:'Lucky TV 開局',url:'#video',btnLabel:'動画を見る',body:'香港好運の映像コンテンツをお届けするLucky TVを開局しました。ライブ映像やヒストリー動画など、香港好運の「見る」楽しみをお届けします。'},
   n_luckyfm_move:{tag:'New',date:'2026 / 06 / 22',title:'Lucky FM 87.3 は DJ の都合により Coyan のネタ部屋へ引っ越しました。',url:'#video',btnLabel:'動画を見る',body:'Lucky FM 87.3 Night Harmonyはコヤンのネタ部屋として引き続き活動予定です。今後ともよろしくお願いします。'},
   n_renewal:{tag:'New',date:'2026 / 06 / 14',title:'On Air & Online — Lucky FM開局とともに、公式サイトも新しくなりました。',btnLabel:'サイトを見る',url:'#news',body:'しぶとく、逞しく33年。中年、デジタルに挑む。Lucky FM開局を機に公式サイトをリニューアルしました。'},
